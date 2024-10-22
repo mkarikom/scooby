@@ -141,7 +141,7 @@ class Scooby(Borzoi):
         x = self.final_joined_convs(x.permute(0, 2, 1))
         if self.use_transform_borzoi_emb:
             x = self.transform_borzoi_emb(x) 
-        x = x.float()
+        # x = x.float() # this breaks autocast
         if not self.training and not self.disable_cache:
             if len(self.sequences) == self.cachesize:
                 self.sequences, self.last_embs = [], []

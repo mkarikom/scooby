@@ -248,7 +248,8 @@ def evaluate(accelerator, csb, val_loader):
     fig, axes = plt.subplots(1, 2, figsize=(10, 5))  # Create a 1x2 subplot grid
 
     # accelerator.print (outputs.shape)
-    for x in range(0, 96):
+    # for x in range(0, 96): # this was 64 not 96
+    for x in range(0,outputs.T.shape[0]):
         pearsons_per_track.append(stats.pearsonr(outputs.T[x].flatten(), targets.T[x].flatten())[0])
 
     accelerator.log({"val_rnaseq_across_tracks_pearson_r": np.nanmean(pearsons_per_track)})
